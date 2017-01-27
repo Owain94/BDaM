@@ -1,0 +1,302 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <ul class="nav nav-tabs nav-justified">
+            <li [class.active]="tab === 1"><a class="pointer" (click)="changeTab(1)">Student</a></li>
+            <li [class.active]="tab === 2"><a class="pointer" (click)="changeTab(2)">Logboek</a></li>
+            <li [class.active]="tab === 3"><a class="pointer" (click)="changeTab(3)">Knmi</a></li>
+            <li [class.active]="tab === 4"><a class="pointer" (click)="changeTab(4)">NS</a></li>
+        </ul>
+
+        <refresh-collapsable-panel
+            *ngIf="tab === 1"
+            [panelTitle]="'Student data — ' + (records | commaSeparatedNumber) + ' records'"
+            [radius]="[0, 0, 4, 4]">
+            <div class="panel-body" body>
+                <div class="row loader" *ngIf="loading">
+                    <div class="m-progress"></div>
+                </div>  
+                <table class="table table-hover no-mb" *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Student nummer</th>
+                            <th>Woonplaats</th>
+                            <th>Afstand</th>
+                            <th>Reisduur</th>
+                            <th>Reiswijze</th>
+                            <th>Postcode</th>
+                            <th>Land</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Student nummer</th>
+                            <th>Woonplaats</th>
+                            <th>Afstand</th>
+                            <th>Reisduur</th>
+                            <th>Reiswijze</th>
+                            <th>Postcode</th>
+                            <th>Land</th>
+                        </tr>
+                    </tfoot>
+                    <tbody *ngFor="let item of pagedItems; let i = index">
+                        <tr>
+                            <td [innerText]="item['stud_nr']"></td>
+                            <td [innerText]="item['woonplaats']"></td>
+                            <td [innerText]="item['afstand'] + ' km'"></td>
+                            <td [innerText]="item['reisduur'] + ' minuten'"></td>
+                            <td [innerText]="item['reiswijze']"></td>
+                            <td [innerText]="item['postcode']"></td>
+                            <td [innerText]="item['land']"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row" *ngIf="!loading">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </refresh-collapsable-panel>
+
+        <refresh-collapsable-panel
+            *ngIf="tab === 2"
+            [panelTitle]="'Logboek data — ' + (records | commaSeparatedNumber) + ' records'"
+            [radius]="[0, 0, 4, 4]">
+            <div class="panel-body" body>
+                <div class="row loader" *ngIf="loading">
+                    <div class="m-progress"></div>
+                </div>  
+                <table class="table table-hover no-mb" *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Student nummer</th>
+                            <th>Logdatum</th>
+                            <th>Richting</th>
+                            <th>Categorie</th>
+                            <th>Vertrek tijd</th>
+                            <th>Aankomst tijd</th>
+                            <th>Reistijd</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Student nummer</th>
+                            <th>Logdatum</th>
+                            <th>Richting</th>
+                            <th>Categorie</th>
+                            <th>Vertrek tijd</th>
+                            <th>Aankomst tijd</th>
+                            <th>Reistijd</th>
+                        </tr>
+                    </tfoot>
+                    <tbody *ngFor="let item of pagedItems; let i = index">
+                        <tr>
+                            <td [innerText]="item['stud_nr']"></td>
+                            <td [innerText]="(item['log_datum'] | DateFuckUp)"></td>
+                            <td [innerText]="item['heenofterug'] == 'h' ? 'Heenreis' : 'Terugreis'"></td>
+                            <td [innerText]="item['categorie']"></td>
+                            <td [innerText]="item['tijd_vtrk']"></td>
+                            <td [innerText]="item['tijd_aankmst']"></td>
+                            <td [innerText]="item['tijd_reis'] + ' minuten'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row" *ngIf="!loading">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </refresh-collapsable-panel>
+
+        <refresh-collapsable-panel
+            *ngIf="tab === 3"
+            [panelTitle]="'Knmi data — ' + (records | commaSeparatedNumber) + ' records'"
+            [radius]="[0, 0, 4, 4]">
+            <div class="panel-body" body>
+                <div class="row loader" *ngIf="loading">
+                    <div class="m-progress"></div>
+                </div>  
+                <table class="table table-hover no-mb" *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th>Temperatuur</th>
+                            <th>Bewolking</th>
+                            <th>Neerslag</th>
+                            <th>Zon</th>
+                            <th>Ijsvorming</th>
+                            <th>Weercode</th>
+                            <th>Windrichting</th>
+                            <th>Windsnelheid</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th>Temperatuur</th>
+                            <th>Bewolking</th>
+                            <th>Neerslag</th>
+                            <th>Zon</th>
+                            <th>Ijsvorming</th>
+                            <th>Weercode</th>
+                            <th>Windrichting</th>
+                            <th>Windsnelheid</th>
+                        </tr>
+                    </tfoot>
+                    <tbody *ngFor="let item of pagedItems; let i = index">
+                        <tr>
+                            <td [innerText]="(item['datum'] | DateFuckUp)"></td>
+                            <td [innerText]="item['tijd']"></td>
+                            <td [innerText]="item['temp']"></td>
+                            <td [innerText]="item['bewolking']"></td>
+                            <td [innerText]="item['duur_neerslag'] + ' minuten'"></td>
+                            <td [innerText]="item['duur_zon'] + ' minuten'"></td>
+                            <td [innerText]="item['ijsvorming']"></td>
+                            <td [innerText]="item['weercode']"></td>
+                            <td [innerText]="item['windrichting']"></td>
+                            <td [innerText]="item['windsnelheid']"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="row" *ngIf="!loading">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </refresh-collapsable-panel>
+
+        <refresh-collapsable-panel
+            *ngIf="tab === 4"
+            [panelTitle]="'NS data — ' + (records | commaSeparatedNumber) + ' records'"
+            [radius]="[0, 0, 4, 4]">
+            <div class="panel-body" body>
+                <div class="row loader" *ngIf="loading">
+                    <div class="m-progress"></div>
+                </div>
+                <table class="table table-hover no-mb" *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th>Rit nummer</th>
+                            <th>Station</th>
+                            <th>Perron</th>
+                            <th>Vervoerder</th>
+                            <th>Eindbestemming</th>
+                            <th>Tussen stations</th>
+                            <th>Trein soort</th>
+                            <th>Vertraging</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th>Rit nummer</th>
+                            <th>Station</th>
+                            <th>Perron</th>
+                            <th>Vervoerder</th>
+                            <th>Eindbestemming</th>
+                            <th>Tussen stations</th>
+                            <th>Trein soort</th>
+                            <th>Vertraging</th>
+                        </tr>
+                    </tfoot>
+                    <tbody *ngFor="let item of pagedItems; let i = index">
+                        <tr>
+                            <td [innerText]="(item['datum'] | DateFuckUp)"></td>
+                            <td [innerText]="item['tijd']"></td>
+                            <td [innerText]="item['ritnr']"></td>
+                            <td [innerText]="item['vertrek']"></td>
+                            <td [innerText]="item['aantal_sporen']"></td>
+                            <td [innerText]="item['bedrijf']"></td>
+                            <td [innerText]="item['bestemming']"></td>
+                            <td [innerText]="item['route']"></td>
+                            <td [innerText]="item['treinsoort']"></td>
+                            <td [innerText]="item['vertraging'] + ' minuten'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="row" *ngIf="!loading">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </refresh-collapsable-panel>
+
+    </div>
+</div>

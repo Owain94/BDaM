@@ -1,0 +1,6 @@
+.clickable i {
+  margin-left: 10px;
+  font-size: 20pt;
+  margin-top: -4px;
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+<div class="panel"
+     [style.border-top-left-radius]="radius[0]"
+     [style.border-top-right-radius]="radius[1]"
+     [style.border-bottom-right-radius]="radius[2]"
+     [style.border-bottom-left-radius]="radius[3]" >
+  <div class="panel-heading">
+    <span class="pull-right clickable gpu"><i class="fa fa-angle-up link-color" (click)="collapsePanel()" [@collapseChanged]="collapse"></i></span>
+
+    <ng-content select="[header]"></ng-content>
+
+    <h3 class="panel-title" [innerText]="panelTitle"></h3>
+  </div>
+
+  <div [class.collapse]="collapse">
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

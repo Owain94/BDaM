@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-lg-3">
+        <refresh-collapsable-panel [panelTitle]="'Totale vertraging per dag'">
+            <div class="panel-body" body>
+                <div *ngIf="vertragingGaugeLoaded" id="vertragingGauge" class="center" [chartData]="vertragingGaugeData" [chartOptions]="vertragingGaugeOptions" chartType="Gauge" GoogleChart #vertragingGauge></div>
+
+                <div class="center">
+                    <material-datepicker [(date)]="date"
+                                         (onSelect)="onDateSelect($event)"
+                                         [rangeStart]="dateRangeStart"
+                                         [rangeEnd]="dateRangeEnd"
+                                         [placeholder]="'Datum'"
+                                         [dateFormat]="'DD-MM-YYYY'">
+                    </material-datepicker>
+                </div>
+            </div>
+
+        </refresh-collapsable-panel>
+    </div>
+
+    <div class="col-lg-3">
+        <refresh-collapsable-panel [panelTitle]="'Totale aantal neerslag per dag in millimeter'">
+            <div class="panel-body" body>
+                <div *ngIf="knmiGaugeLoaded" id="knmiGauge" class="center" [chartData]="knmiGaugeData" [chartOptions]="knmiGaugeOptions" chartType="Gauge" GoogleChart #knmiGauge></div>
+
+
+                <div class="center">
+                    <material-datepicker [(date)]="dateKnmi"
+                                         (onSelect)="onDateSelectKnmi($event)"
+                                         [rangeStart]="dateRangeStartKnmi"
+                                         [rangeEnd]="dateRangeEndKnmi"
+                                         [placeholder]="'Datum'"
+                                         [dateFormat]="'DD-MM-YYYY'">
+                    </material-datepicker>
+                </div>
+            </div>
+
+        </refresh-collapsable-panel>
+    </div>
+
+    <div class="col-lg-3">
+        <refresh-collapsable-panel [panelTitle]="'BLIEP BLOOP'">
+        </refresh-collapsable-panel>
+    </div>
+
+    <div class="col-lg-3">
+        <refresh-collapsable-panel [panelTitle]="'BLOOP BLIEP'">
+        </refresh-collapsable-panel>
+    </div>
+</div>
+
+<div class="row">
+
+</div>

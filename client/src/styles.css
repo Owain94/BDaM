@@ -1,0 +1,310 @@
+@font-face {
+  font-family: Roboto;
+  src: url("assets/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("assets/fonts/Roboto-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url("assets/fonts/OpenSans-Regular.ttf");
+}
+
+html,
+body {
+  font-family: 'Roboto', 'OpenSans', sans-serif;
+}
+
+body {
+  color: #797979;
+  background: #f2f2f2;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 13px;
+}
+
+ul li {
+  list-style: none;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #797979;
+}
+
+label {
+  font-weight: 400;
+}
+
+::-moz-selection {
+  background: #68dff0;
+  color: #fff;
+}
+
+::selection {
+  background: #68dff0;
+  color: #fff;
+}
+
+.modal-header {
+  background: #68dff0;
+}
+
+.modal-title {
+  color: white;
+}
+
+.btn-round {
+  border-radius: 20px;
+}
+
+a.logo {
+  font-size: 20px;
+  color: #fff;
+  float: left;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+a.logo b {
+  font-weight: 900;
+}
+
+a.logo:hover,
+a.logo:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+a.logo span {
+  color: #68dff0;
+}
+
+@media (min-width: 768px) {
+  .current-container {
+    padding-top: 40px;
+  }
+}
+
+h1.red {
+  color: #d9534f;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: default;
+}
+
+.center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    margin-bottom: 5px;
+  }
+}
+
+.doc-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1100;
+  background-color: #fff;
+}
+
+@-webkit-keyframes ld {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes ld {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.center-doc-loader {
+  width: 400px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -40px 0 0 -200px;
+}
+
+.m-progress {
+  position: relative;
+  opacity: 0.8;
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+.m-progress:hover,
+.m-progress:active,
+.m-progress:focus {
+  cursor: default;
+  color: transparent;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.m-progress::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  background: transparent;
+  border: 1px solid #000;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -35px;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: ld 1s ease-in-out infinite;
+  animation: ld 1s ease-in-out infinite;
+}
+
+.no-mp {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.link-color {
+  color: #337ab7;
+}
+
+.nav-tabs {
+  margin-left: 5px;
+  padding-right: 10px;
+}
+
+.gpu {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border: 1px solid #fff !important;
+}
+
+.nav-tabs.nav-justified > .active > a,
+.nav-tabs.nav-justified > .active > a:focus,
+.nav-tabs.nav-justified > .active > a:hover {
+  border: 1px solid #fff !important;
+}
+
+.nav-tabs.nav-justified > li > a {
+  border-bottom: 1px solid #fff !important;
+}
+
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 4px;
+}
+
+@media only screen and (max-width: 900px) {
+  table,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tfoot tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  thead tfoot {
+    display: none !important;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    min-height: 30px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50% !important;
+    white-space: normal;
+    text-align: left;
+  }
+
+  td::before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  td::before {
+    content: attr(data-title);
+  }
+
+  .table > tbody + tbody {
+    border-top: 0 !important;
+  }
+}
